@@ -1,0 +1,48 @@
+.table-title {
+	margin-left: 30px;
+	margin-top: 30px;
+	font-size: 22px;
+}
+.table-card {
+	margin-left: 30px;
+	margin-top: 10px;
+	padding: 0;
+}
+
+.task-table {
+	display: flex;
+	flex-direction: column;
+}
+
+.table-header-row {
+	display: flex;
+	font-size: 18px;
+	border-bottom: 1px solid rgb(39, 39, 39);
+	height: 65px;
+	align-items: center;
+	padding-left: 15px;
+	font-weight: 500;
+}
+
+.table-row {
+	display: flex;
+	height: 45px;
+	align-items: center;
+	padding-left: 15px;
+}
+.table-row:not(last-child) {
+	border-bottom: 1px solid rgb(39, 39, 39);
+}
+
+.column-name {
+	width: 200px;
+}
+.column-description {
+	width: 600px;
+}
+.column-estimate {
+	width: 300px;
+}
+.column-status {
+	width: 150px;
+}

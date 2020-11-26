@@ -1,22 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;  background-color: #4a4e69;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 
 .d-flex  {
 	display: flex;
 }
 .flex-column {
 	flex-direction: column;
+	display: flex;
 }
 .align-items-center {
 	align-items: center;
+	display: flex;
 }
 .justify-content-center {
 	justify-content: center;
+	display: flex;
 }
 .justify-content-between {
 	justify-content: space-between;
+	display: flex;
+}
+.mt-3 {
+	margin-top: 15px;
 }
 .mr-3 {
 	margin-right: 15px;
@@ -33,4 +40,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;  background
 }
 .mt-a {
 	margin-top: auto;
+}
+.ml-a {
+	margin-left: auto;
+}
+.mr-a {
+	margin-right: auto;
+}
+.w-100 {
+	width: 100%;
 }

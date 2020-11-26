@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { EstimateTime, Task } from 'src/types/Task';
+import { Task } from 'src/types/Task';
 import { NewTaskDialogComponent } from './new-task-dialog/new-task-dialog.component';
 import { FirebaseService } from './services/firebase.service';
 
@@ -14,14 +15,25 @@ import { FirebaseService } from './services/firebase.service';
 })
 export class AppComponent implements OnInit {
 
-  taskList: Observable<any[]>;
+  loading = true;
+  plannedTaskList: any[] = [];
+  inProgressTaskList: any[] = [];
+  completedTaskList: any[] = [];
+
   constructor(private fireBaseSvc: FirebaseService, public taskListConnection: AngularFirestore,
-              private dialog: MatDialog) {
-    this.taskList = taskListConnection.collection('tasks').valueChanges();
+    private dialog: MatDialog, private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
+    // async connection with task database
+    taskListConnection.collection('tasks').valueChanges().subscribe(
+      result => {
+        console.log(result);
+        this.plannedTaskList = result.filter((t: any) => t.statusID === 0);
+        this.inProgressTaskList = result.filter((t: any) => t.statusID === 1);
+        this.completedTaskList = result.filter((t: any) => t.statusID === 2);
+        this.loading = false;
+      });
   }
 
   taskListColumns = ['name', 'description', 'estimate', 'status', 'action'];
-
 
   statusOptions = [
     { name: 'Planned', id: 0 },
@@ -30,26 +42,14 @@ export class AppComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    // this.fireBaseSvc.getTaskList().subscribe(
-    //   result => {
-    //     this.taskList = new MatTableDataSource(result.payload.doc.data());
-    //   });
+    this.iconRegistry.addSvgIcon('delete',
+      this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/delete.svg'));
+    this.iconRegistry.addSvgIcon('edit',
+      this.sanitizer.bypassSecurityTrustResourceUrl('assets/icons/edit.svg'));
   }
 
   addNewTaskTemplate(): void {
-    // this.taskList.push({
-    //   name: '',
-    //   description: '',
-    //   estimate: { hours: 0, minutes: 0, days: 0 },
-    //   statusID: 1,
-    //   isEditing: true,
-    //   toDelete: false
-    // });
-
-    // required for table to update view after inserting data
-    // this.taskList._updateChangeSubscription();
-
-    const dialogRef = this.dialog.open(NewTaskDialogComponent, {
+    this.dialog.open(NewTaskDialogComponent, {
       height: '400px',
       width: '600px',
     });

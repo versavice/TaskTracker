@@ -1,53 +1,24 @@
 <mat-toolbar class="header">
-  <span>Task Tracker</span>
+  <pre style="line-height: 1;">
+    _____            _       _        ______            __     ______                 __            
+   / ___/____ ___ _ (_)___ _( )___   /_  __/___ _ ___  / /__  /_  __/____ ___ _ ____ / /__ ___  ____
+  / /__ / __// _ `// // _ `/|/(_-<    / /  / _ `/(_-< /  '_/   / /  / __// _ `// __//  '_// -_)/ __/
+  \___//_/   \_,_//_/ \_, /  /___/   /_/   \_,_//___//_/\_\   /_/  /_/   \_,_/ \__//_/\_\ \__//_/   
+                     /___/                                                                          
+  </pre>
   <button mat-raised-button color="primary" (click)="addNewTaskTemplate()">New Task</button>
 </mat-toolbar>
 
+<div [hidden]="loading">
+  <app-task-table title="Planned Tasks" [taskList]="plannedTaskList"></app-task-table>
 
-<mat-card class="table-card">
+  <app-task-table title="In Progress Tasks" [taskList]="inProgressTaskList"></app-task-table>
 
-  <div [hidden]="!(taskList | async)?.length">
+  <app-task-table title="Completed Tasks" [taskList]="completedTaskList"></app-task-table>
+</div>
 
-    <span class="task-table">
-
-      <span class="table-header-row">
-        <div class="column-name">
-          Name
-        </div>
-        <div class="column-description">
-          Description
-        </div>
-        <div class="column-estimate">
-          Estimate
-        </div>
-        <div class="column-status">
-          Status
-        </div>
-      </span>
-
-      <span class="table-row" *ngFor="let item of taskList | async">
-        <div class="column-name">
-          {{item.name}}
-        </div>
-        <div class="column-description">
-          {{item.description}}
-        </div>
-        <div class="column-estimate">
-          {{'Day(s): ' + item.estimate.days + ' Hour(s): ' + item.estimate.hours + ' Minute(s): ' + item.estimate.minutes}}
-        </div>
-        <div class="column-status">
-          {{statusOptions[item.statusID].name}}
-        </div>
-      </span>
-
-    </span>
-  </div>
-
-  <div [hidden]="(taskList | async)?.length">
-    You have no tracked tasks
-  </div>
-</mat-card>
-
+<mat-spinner class="loader" *ngIf="loading">
+</mat-spinner>
 
 <!-- Exercise: Task tracker  
  Please develop a small SPA with this simple requirements:  

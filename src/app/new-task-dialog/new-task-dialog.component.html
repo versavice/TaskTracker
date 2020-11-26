@@ -1,34 +1,34 @@
 <span class="d-flex flex-column" style="height: 100%;">
 
-  <div class="dialog-header">New Task</div>
+  <div class="dialog-header">{{isEditing ? 'Edit ' : 'New '}}Task</div>
 
   <mat-form-field style="width: 300px;">
-    <input matInput placeholder="Name" [(ngModel)]="newTask.name">
+    <input matInput placeholder="Name" [(ngModel)]="taskForSave.name">
   </mat-form-field>
 
   <mat-form-field>
     <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
-      placeholder="Description" [(ngModel)]="newTask.description"></textarea>
+      placeholder="Description" [(ngModel)]="taskForSave.description"></textarea>
   </mat-form-field>
 
 
   <span class="d-flex align-items-center">
     <span class="mr-1">Days: </span>
     <mat-form-field class="small-field mr-3">
-      <input matInput [(ngModel)]="newTask.estimate.days">
+      <input matInput [(ngModel)]="taskForSave.estimate.days">
     </mat-form-field>
     <span class="mr-1">Hours: </span>
     <mat-form-field class="small-field mr-3">
-      <input matInput [(ngModel)]="newTask.estimate.hours">
+      <input matInput [(ngModel)]="taskForSave.estimate.hours">
     </mat-form-field>
     <span class="mr-1">Minutes: </span>
     <mat-form-field class="small-field mr-3">
-      <input matInput [(ngModel)]="newTask.estimate.minutes">
+      <input matInput [(ngModel)]="taskForSave.estimate.minutes">
     </mat-form-field>
   </span>
 
   <mat-form-field style="width: 150px;">
-    <mat-select placeholder="Status" name="item" [(ngModel)]="newTask.statusID">
+    <mat-select placeholder="Status" name="item" [(ngModel)]="taskForSave.statusID">
       <mat-option *ngFor="let status of statusOptions" [value]="status.id">
         {{status.name}}
       </mat-option>
@@ -37,6 +37,6 @@
 
   <span class="d-flex justify-content-between mt-a">
     <button mat-raised-button color="primary" (click)="saveTask()">Save</button>
-    <button mat-raised-button color="secondary" (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="secondary" (click)="close()">Cancel</button>
   </span>
 </span>

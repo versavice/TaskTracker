@@ -8,19 +8,23 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { NewTaskDialogComponent } from './new-task-dialog/new-task-dialog.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TaskTableComponent } from './task-table/task-table.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
-    NewTaskDialogComponent
-  ],
+    NewTaskDialogComponent,
+      TaskTableComponent
+   ],
   imports: [
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

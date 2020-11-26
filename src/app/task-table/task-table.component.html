@@ -1,0 +1,45 @@
+<div class="table-title">{{title}}</div>
+<mat-card class="table-card">
+
+  <span class="task-table" [hidden]="taskList.length === 0">
+
+    <span class="table-header-row">
+      <div class="column-name">
+        Name
+      </div>
+      <div class="column-description">
+        Description
+      </div>
+      <div class="column-estimate">
+        Estimate
+      </div>
+    </span>
+
+    <span *ngFor="let item of taskList">
+      <span class="table-row">
+        <div class="column-name">
+          {{item.name}}
+        </div>
+        <div class="column-description">
+          {{item.description}}
+        </div>
+        <div class="column-estimate">
+          {{'Day(s): ' + item.estimate.days + ' Hour(s): ' + item.estimate.hours + ' Minute(s): ' + item.estimate.minutes}}
+        </div>
+        <!-- <div class="ml-a justify-content-between">
+          <button mat-icon-button>
+            <mat-icon svgIcon="edit"></mat-icon>
+          </button>
+          <button mat-icon-button color="warn">
+            <mat-icon svgIcon="delete"></mat-icon>
+          </button>
+        </div> -->
+      </span>
+    </span>
+
+  </span>
+
+  <div class="empty-message" [hidden]="taskList.length > 0">
+    There are no {{title}} to display.
+  </div>
+</mat-card>
