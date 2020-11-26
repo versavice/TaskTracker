@@ -1,0 +1,61 @@
+<mat-toolbar class="header">
+  <span>Task Tracker</span>
+  <button mat-raised-button color="primary" (click)="addNewTaskTemplate()">New Task</button>
+</mat-toolbar>
+
+
+<mat-card class="table-card">
+
+  <div [hidden]="!(taskList | async)?.length">
+
+    <span class="task-table">
+
+      <span class="table-header-row">
+        <div class="column-name">
+          Name
+        </div>
+        <div class="column-description">
+          Description
+        </div>
+        <div class="column-estimate">
+          Estimate
+        </div>
+        <div class="column-status">
+          Status
+        </div>
+      </span>
+
+      <span class="table-row" *ngFor="let item of taskList | async">
+        <div class="column-name">
+          {{item.name}}
+        </div>
+        <div class="column-description">
+          {{item.description}}
+        </div>
+        <div class="column-estimate">
+          {{'Day(s): ' + item.estimate.days + ' Hour(s): ' + item.estimate.hours + ' Minute(s): ' + item.estimate.minutes}}
+        </div>
+        <div class="column-status">
+          {{statusOptions[item.statusID].name}}
+        </div>
+      </span>
+
+    </span>
+  </div>
+
+  <div [hidden]="(taskList | async)?.length">
+    You have no tracked tasks
+  </div>
+</mat-card>
+
+
+<!-- Exercise: Task tracker  
+ Please develop a small SPA with this simple requirements:  
+ * Present visually a list of tasks in 3 different states: Planned, In progress, Completed.  
+ * Each task contains, name, description, estimate and state.  
+ * The user needs to be able to add/remove and change the state of the tasks. 
+ * Somewhere in the SPA you need to present an up to date status, adding up all hours for each state. 
+ Notes:  
+ You can assume it's a single user SPA, and there's no need to store data; but the user needs to be able to add/remove and see tasks.  Mocking a REST api is suggested.  
+ You can reuse any existing library, but please distribute the solution with them.  
+ Write code as you would for production, having in mind that usability is important as well. -->

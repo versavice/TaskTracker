@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;  background-color: #4a4e69;}
+
+.d-flex  {
+	display: flex;
+}
+.flex-column {
+	flex-direction: column;
+}
+.align-items-center {
+	align-items: center;
+}
+.justify-content-center {
+	justify-content: center;
+}
+.justify-content-between {
+	justify-content: space-between;
+}
+.mr-3 {
+	margin-right: 15px;
+}
+.mr-2 {
+	margin-right: 10px;
+}
+.mr-1 {
+	margin-right: 5px;
+}
+.mx-3 {
+	margin-right: 15px;
+	margin-left: 15px;
+}
+.mt-a {
+	margin-top: auto;
+}
