@@ -4,36 +4,39 @@
   <span class="task-table" [hidden]="taskList.length === 0">
 
     <span class="table-header-row">
-      <div class="column-name">
+      <div class="column name">
         Name
       </div>
-      <div class="column-description">
+      <div class="column description">
         Description
       </div>
-      <div class="column-estimate">
+      <div class="column estimate">
         Estimate
       </div>
     </span>
 
     <span *ngFor="let item of taskList">
-      <span class="table-row">
-        <div class="column-name">
+      <span class="table-row" [ngClass]="{'table-row-delete': item.isDeleted}">
+        <div class="column name">
           {{item.name}}
         </div>
-        <div class="column-description">
+        <div class="column description">
           {{item.description}}
         </div>
-        <div class="column-estimate">
+        <div class="column estimate">
           {{'Day(s): ' + item.estimate.days + ' Hour(s): ' + item.estimate.hours + ' Minute(s): ' + item.estimate.minutes}}
         </div>
-        <!-- <div class="ml-a justify-content-between">
-          <button mat-icon-button>
+        <div class="ml-a justify-content-between">
+          <button mat-icon-button (click)="editTask(item)">
             <mat-icon svgIcon="edit"></mat-icon>
           </button>
-          <button mat-icon-button color="warn">
-            <mat-icon svgIcon="delete"></mat-icon>
+          <button mat-icon-button color="warn" (click)="deleteTask(item)">
+            <mat-icon svgIcon="delete_filled"></mat-icon>
           </button>
-        </div> -->
+          <!-- <button matTooltip="Cancel deletion" *ngIf="item.isDeleted" mat-icon-button color="warn" (click)="deleteTask(item)">
+            <mat-icon svgIcon="undo"></mat-icon>
+          </button> -->
+        </div>
       </span>
     </span>
 

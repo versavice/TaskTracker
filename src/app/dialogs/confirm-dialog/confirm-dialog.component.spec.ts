@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { NewTaskDialogComponent } from './new-task-dialog.component';
+import { ConfirmDialogComponent } from './confirm-dialog.component';
 
-describe('NewTaskDialogComponent', () => {
-  let component: NewTaskDialogComponent;
-  let fixture: ComponentFixture<NewTaskDialogComponent>;
+describe('ConfirmDialogComponent', () => {
+  let component: ConfirmDialogComponent;
+  let fixture: ComponentFixture<ConfirmDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewTaskDialogComponent ]
+      declarations: [ ConfirmDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NewTaskDialogComponent);
+    fixture = TestBed.createComponent(ConfirmDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

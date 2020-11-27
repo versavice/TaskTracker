@@ -5,6 +5,7 @@
 }
 .table-card {
 	margin-left: 30px;
+	margin-right: 30px;
 	margin-top: 10px;
 	padding: 0;
 }
@@ -26,23 +27,37 @@
 
 .table-row {
 	display: flex;
-	height: 45px;
+	min-height: 40px;
+	max-height: 150px;
 	align-items: center;
 	padding-left: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.table-row-delete {
+	background-color: hsl(0, 55%, 17%);
+	opacity: 50%;
 }
 .table-row:not(last-child) {
 	border-bottom: 1px solid rgb(39, 39, 39);
 }
 
-.column-name {
+.column {
+	padding-right: 15px;
+}
+.name {
 	width: 200px;
 }
-.column-description {
-	width: 600px;
+.description {
+	width: 850px;
 }
-.column-estimate {
+.estimate {
 	width: 300px;
 }
-.column-status {
+.status {
 	width: 150px;
+}
+
+.empty-message {
+	padding: 20px;
 }

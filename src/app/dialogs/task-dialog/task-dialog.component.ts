@@ -1,14 +1,14 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Task } from 'src/types/Task';
-import { FirebaseService } from '../services/firebase.service';
+import { FirebaseService } from '../../services/firebase.service';
 
 @Component({
-  selector: 'app-new-task-dialog',
-  templateUrl: './new-task-dialog.component.html',
-  styleUrls: ['./new-task-dialog.component.scss']
+  selector: 'app-task-dialog',
+  templateUrl: './task-dialog.component.html',
+  styleUrls: ['./task-dialog.component.scss']
 })
-export class NewTaskDialogComponent {
+export class TaskDialogComponent {
 
   taskForSave: Task;
   isEditing = false;
@@ -18,7 +18,7 @@ export class NewTaskDialogComponent {
     { name: 'Completed', id: 2 },
   ];
 
-  constructor(private fireBaseSvc: FirebaseService, private dialog: MatDialogRef<NewTaskDialogComponent>,
+  constructor(private fireBaseSvc: FirebaseService, private dialog: MatDialogRef<TaskDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public taskToEdit: any) {
 
     if (taskToEdit != null) {
@@ -30,7 +30,13 @@ export class NewTaskDialogComponent {
   }
 
   saveTask(): void {
-    this.fireBaseSvc.saveTask(this.taskForSave);
+    if (this.taskForSave.id != null) {
+      // existing task, update
+      this.fireBaseSvc.editTask(this.taskForSave);
+    } else {
+      // new task
+      this.fireBaseSvc.saveTask(this.taskForSave);
+    }
     this.close();
   }
 

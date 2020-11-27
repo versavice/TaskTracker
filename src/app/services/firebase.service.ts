@@ -11,18 +11,28 @@ export class FirebaseService {
 
     constructor(private firestore: AngularFirestore, private snackBar: MatSnackBar) { }
 
-    public saveTask(task: Task): Promise<Task> {
-        return new Promise<any>((resolve, reject) => {
+    public saveTask(task: Task): Promise<any> {
+        return new Promise<any>(result => {
             this.firestore.collection('tasks')
-            // Object.assign because for some reason Firebase throws error:
-            // "Data must be an object, but it was: a custom object"
-                .add(Object.assign({}, task))
-                .then(res => {
-                    console.log(res);
-                }, err => {
-                    console.error(err);
-                    reject(err);
-                });
+                // Object.assign because for some reason Firebase throws error:
+                // "Data must be an object, but it was: a custom object"
+                .add(Object.assign({}, task));
+        });
+    }
+
+    public editTask(task: Task): Promise<Task> {
+        return new Promise<any>(result => {
+            this.firestore.collection('tasks')
+                .doc(task.id)
+                .set(task);
+        });
+    }
+
+    public deleteTask(task: Task): Promise<Task> {
+        return new Promise<any>(result => {
+            this.firestore.collection('tasks')
+                .doc(task.id)
+                .delete();
         });
     }
 

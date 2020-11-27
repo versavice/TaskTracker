@@ -8,7 +8,7 @@
 
   <mat-form-field>
     <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
-      placeholder="Description" [(ngModel)]="taskForSave.description"></textarea>
+      placeholder="Description" [(ngModel)]="taskForSave.description" maxlength="750"></textarea>
   </mat-form-field>
 
 
@@ -36,7 +36,7 @@
   </mat-form-field>
 
   <span class="d-flex justify-content-between mt-a">
+    <button style="margin-right: 60px;" mat-raised-button color="secondary" (click)="close()">Cancel</button>
     <button mat-raised-button color="primary" (click)="saveTask()">Save</button>
-    <button mat-raised-button color="secondary" (click)="close()">Cancel</button>
   </span>
 </span>

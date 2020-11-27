@@ -7,16 +7,18 @@ import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
-import { NewTaskDialogComponent } from './new-task-dialog/new-task-dialog.component';
+import { TaskDialogComponent } from './dialogs/task-dialog/task-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TaskTableComponent } from './task-table/task-table.component';
+import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
-    NewTaskDialogComponent,
-      TaskTableComponent
-   ],
+    TaskDialogComponent,
+    TaskTableComponent,
+    ConfirmDialogComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule,
