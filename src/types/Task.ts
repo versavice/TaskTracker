@@ -7,7 +7,6 @@ export class Task {
         this.description = '';
         this.estimate = { hours: 0, minutes: 0, days: 0 },
         this.statusID = 0;
-        this.isDeleted = false;
     }
 
     id: string | undefined;
@@ -15,11 +14,16 @@ export class Task {
     description: string;
     estimate: EstimateTime;
     statusID: number;
-    isDeleted: boolean;
 }
 
 
-export interface EstimateTime {
+export class EstimateTime {
+    constructor() {
+        this.minutes = 0;
+        this.hours = 0;
+        this.days = 0;
+    }
+
     minutes: number;
     hours: number;
     days: number;

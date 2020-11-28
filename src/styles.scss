@@ -1,9 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+html,
+body {
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
-.d-flex  {
+.success-snackbar {
+	background-color: #2e7d32 !important;
+	color: white;
+}
+.error-snackbar {
+	background-color: #c62828 !important;
+	color: white;
+}
+
+.d-flex {
 	display: flex;
 }
 .flex-column {
@@ -49,4 +64,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 }
 .w-100 {
 	width: 100%;
+}
+.h-100 {
+	height: 100%;
 }

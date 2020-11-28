@@ -1,42 +1,56 @@
-<span class="d-flex flex-column" style="height: 100%;">
+<form class="h-100" [formGroup]="taskForm" (ngSubmit)="saveTask()">
+  <span class="d-flex flex-column h-100">
 
-  <div class="dialog-header">{{isEditing ? 'Edit ' : 'New '}}Task</div>
+    <div class="dialog-header">{{isEditing ? 'Edit ' : 'New '}}Task</div>
 
-  <mat-form-field style="width: 300px;">
-    <input matInput placeholder="Name" [(ngModel)]="taskForSave.name">
-  </mat-form-field>
-
-  <mat-form-field>
-    <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"
-      placeholder="Description" [(ngModel)]="taskForSave.description" maxlength="750"></textarea>
-  </mat-form-field>
-
-
-  <span class="d-flex align-items-center">
-    <span class="mr-1">Days: </span>
-    <mat-form-field class="small-field mr-3">
-      <input matInput [(ngModel)]="taskForSave.estimate.days">
+    <mat-form-field style="width: 200px;" class="mr-3">
+      <input matInput placeholder="Name" formControlName="name" maxlength="20">
     </mat-form-field>
-    <span class="mr-1">Hours: </span>
-    <mat-form-field class="small-field mr-3">
-      <input matInput [(ngModel)]="taskForSave.estimate.hours">
+
+    <mat-form-field>
+      <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" maxlength="750"
+        cdkAutosizeMaxRows="5" placeholder="Description" formControlName="description"></textarea>
     </mat-form-field>
-    <span class="mr-1">Minutes: </span>
-    <mat-form-field class="small-field mr-3">
-      <input matInput [(ngModel)]="taskForSave.estimate.minutes">
+
+
+    <form formGroupName="estimate">
+      <span class="estimate-block d-flex align-items-center">
+
+        <span>
+          <span class="mr-1">Days: </span>
+          <mat-form-field class="small-field mr-3">
+            <input type="number" matInput formControlName="days">
+          </mat-form-field>
+        </span>
+
+        <span>
+          <span class="mr-1">Hours: </span>
+          <mat-form-field class="small-field mr-3">
+            <input type="number" matInput formControlName="hours">
+          </mat-form-field>
+        </span>
+
+        <span>
+          <span class="mr-1">Minutes: </span>
+          <mat-form-field class="small-field mr-3">
+            <input type="number" matInput formControlName="minutes">
+          </mat-form-field>
+        </span>
+      </span>
+    </form>
+
+    <mat-form-field style="width: 150px;">
+      <mat-select placeholder="Status" name="item" formControlName="statusID">
+        <mat-option *ngFor="let status of statusOptions" [value]="status.id">
+          {{status.name}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
+
+    <span class="d-flex justify-content-between mt-a">
+      <button type="button" mat-raised-button color="secondary" (click)="close()">Cancel</button>
+      <button type="submit" mat-raised-button color="primary">Save</button>
+    </span>
+
   </span>
-
-  <mat-form-field style="width: 150px;">
-    <mat-select placeholder="Status" name="item" [(ngModel)]="taskForSave.statusID">
-      <mat-option *ngFor="let status of statusOptions" [value]="status.id">
-        {{status.name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <span class="d-flex justify-content-between mt-a">
-    <button style="margin-right: 60px;" mat-raised-button color="secondary" (click)="close()">Cancel</button>
-    <button mat-raised-button color="primary" (click)="saveTask()">Save</button>
-  </span>
-</span>
+</form>

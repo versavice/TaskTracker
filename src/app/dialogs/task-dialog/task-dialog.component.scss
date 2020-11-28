@@ -3,5 +3,19 @@
 	padding-bottom: 20px;
 }
 .small-field {
-	width: 20px;
+	width: 50px;
+}
+
+.estimate-block {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+/* On screens that are 500px or less */
+@media screen and (max-width: 500px) {
+	.estimate-block {
+		flex-direction: column;
+		align-items: unset;
+	}
 }

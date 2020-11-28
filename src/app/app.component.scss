@@ -2,6 +2,7 @@
 	display: flex;
 	justify-content: space-between;
 	height: 110px;
+	font-weight: 600;
 }
 
 .loader {
@@ -9,4 +10,21 @@
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 50px;
+}
+
+.sexy-ascii-header {
+	display: inline;
+	color: goldenrod;
+}
+.narrow-header {
+	display: none;
+}
+/* On screens that are 1350px or less */
+@media screen and (max-width: 1350px) {
+	.narrow-header {
+		display: inline;
+	}
+	.sexy-ascii-header {
+		display: none;
+	}
 }

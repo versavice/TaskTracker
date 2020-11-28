@@ -3,10 +3,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Observable } from 'rxjs';
 import { Task } from 'src/types/Task';
+import { FirebaseService } from '../services/firebase.service';
 import { TaskDialogComponent } from './dialogs/task-dialog/task-dialog.component';
-import { FirebaseService } from './services/firebase.service';
 
 @Component({
   selector: 'app-root',

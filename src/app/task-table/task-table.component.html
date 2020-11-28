@@ -1,48 +1,63 @@
-<div class="table-title">{{title}}</div>
+<div class="table-title">
+  <span>{{title}}</span>
+  <span class="table-estimate-total" *ngIf="dayTotal || hourTotal || minuteTotal">
+    <span>{{'Estimate Total: '}}</span>
+    <span *ngIf="dayTotal > 0">{{dayTotal + ' Day' + (dayTotal > 1 ? 's ' : ' ')}}</span>
+    <span *ngIf="hourTotal > 0">{{hourTotal + ' Hour' + (hourTotal > 1 ? 's ' : ' ')}}</span>
+    <span *ngIf="minuteTotal > 0">{{minuteTotal + ' Minute' + (minuteTotal > 1 ? 's' : '')}} </span>
+  </span>
+</div>
 <mat-card class="table-card">
 
   <span class="task-table" [hidden]="taskList.length === 0">
 
     <span class="table-header-row">
+
       <div class="column name">
         Name
       </div>
+
       <div class="column description">
         Description
       </div>
+
       <div class="column estimate">
         Estimate
       </div>
     </span>
 
     <span *ngFor="let item of taskList">
-      <span class="table-row" [ngClass]="{'table-row-delete': item.isDeleted}">
+      <span class="table-row" (click)="editTask(item)">
+
         <div class="column name">
           {{item.name}}
         </div>
+
         <div class="column description">
           {{item.description}}
         </div>
+
         <div class="column estimate">
-          {{'Day(s): ' + item.estimate.days + ' Hour(s): ' + item.estimate.hours + ' Minute(s): ' + item.estimate.minutes}}
+          <span
+            *ngIf="item.estimate.days > 0">{{item.estimate.days + ' Day' + (item.estimate.days > 1 ? 's ' : ' ')}}</span>
+          <span
+            *ngIf="item.estimate.hours > 0">{{item.estimate.hours + ' Hour' + (item.estimate.hours > 1 ? 's ' : ' ')}}</span>
+          <span
+            *ngIf="item.estimate.minutes > 0">{{item.estimate.minutes + ' Minute' + (item.estimate.minutes > 1 ? 's ' : ' ')}}</span>
         </div>
+
         <div class="ml-a justify-content-between">
-          <button mat-icon-button (click)="editTask(item)">
-            <mat-icon svgIcon="edit"></mat-icon>
-          </button>
-          <button mat-icon-button color="warn" (click)="deleteTask(item)">
+          <button class="delete-button" mat-raised-button color="warn" (click)="deleteTask(item, $event)">
             <mat-icon svgIcon="delete_filled"></mat-icon>
           </button>
-          <!-- <button matTooltip="Cancel deletion" *ngIf="item.isDeleted" mat-icon-button color="warn" (click)="deleteTask(item)">
-            <mat-icon svgIcon="undo"></mat-icon>
-          </button> -->
         </div>
+
       </span>
     </span>
 
   </span>
 
-  <div class="empty-message" [hidden]="taskList.length > 0">
+  <div class="empty-message" *ngIf="taskList.length === 0">
     There are no {{title}} to display.
   </div>
 </mat-card>
