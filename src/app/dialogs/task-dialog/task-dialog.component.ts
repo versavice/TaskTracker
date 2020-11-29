@@ -37,9 +37,12 @@ export class TaskDialogComponent {
       name: new FormControl(this.taskForSave.name, [Validators.required, Validators.maxLength(20)]),
       description: new FormControl(this.taskForSave.description, [Validators.required, Validators.maxLength(750)]),
       estimate: new FormGroup({
-        days: new FormControl(this.taskForSave.estimate.days, [Validators.required, Validators.pattern('^[0-9]*$')]),
-        minutes: new FormControl(this.taskForSave.estimate.hours, [Validators.required, Validators.pattern('^[0-9]*$')]),
-        hours: new FormControl(this.taskForSave.estimate.minutes, [Validators.required, Validators.pattern('^[0-9]*$')])
+        days: new FormControl(this.taskForSave.estimate.days,
+          [Validators.required, Validators.maxLength(4), Validators.pattern('^[0-9]*$')]),
+        minutes: new FormControl(this.taskForSave.estimate.hours,
+          [Validators.required, Validators.maxLength(4), Validators.pattern('^[0-9]*$')]),
+        hours: new FormControl(this.taskForSave.estimate.minutes,
+          [Validators.required, Validators.maxLength(4), Validators.pattern('^[0-9]*$')])
       }),
       statusID: new FormControl(this.taskForSave.statusID, [Validators.required])
     });

@@ -19,21 +19,21 @@
         <span>
           <span class="mr-1">Days: </span>
           <mat-form-field class="small-field mr-3">
-            <input type="number" matInput formControlName="days">
+            <input matInput formControlName="days" [maxlength]="4">
           </mat-form-field>
         </span>
 
         <span>
           <span class="mr-1">Hours: </span>
           <mat-form-field class="small-field mr-3">
-            <input type="number" matInput formControlName="hours">
+            <input matInput formControlName="hours" [maxlength]="4">
           </mat-form-field>
         </span>
 
         <span>
           <span class="mr-1">Minutes: </span>
           <mat-form-field class="small-field mr-3">
-            <input type="number" matInput formControlName="minutes">
+            <input matInput formControlName="minutes" [maxlength]="4">
           </mat-form-field>
         </span>
       </span>
