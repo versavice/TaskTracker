@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { Task } from 'src/types/Task';
 
@@ -9,7 +8,7 @@ import { Task } from 'src/types/Task';
 })
 export class FirebaseService {
 
-    constructor(private firestore: AngularFirestore, private snackBar: MatSnackBar) { }
+    constructor(private firestore: AngularFirestore) { }
 
     public saveTask(task: Task): Promise<any> {
         return new Promise<any>(result => {

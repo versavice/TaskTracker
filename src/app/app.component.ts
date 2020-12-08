@@ -17,9 +17,9 @@ export class AppComponent implements OnInit {
   loading = true;
   taskListColumns = ['name', 'description', 'estimate', 'status', 'action'];
 
-  plannedTaskList: any[] = [];
-  inProgressTaskList: any[] = [];
-  completedTaskList: any[] = [];
+  plannedTaskList: Task[] = [];
+  inProgressTaskList: Task[] = [];
+  completedTaskList: Task[] = [];
 
 
   constructor(private fireBaseSvc: FirebaseService, public taskListConnection: AngularFirestore,
